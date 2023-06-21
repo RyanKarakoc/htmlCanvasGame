@@ -28,20 +28,3 @@
 #arrows {
   display: none;
 }
-
-#menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  height: 500px;
-  background-color: red;
-  text-align: center;
-  gap: 60px;
-  padding-top: 50px;
-  align-items: center;
-  justify-content: top;
-}

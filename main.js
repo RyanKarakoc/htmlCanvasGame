@@ -19,22 +19,32 @@ window.addEventListener("load", function () {
     game.draw(context);
 
     if (game.menu) {
+      menu.draw(context);
       canvas.addEventListener("click", (e) => {
-        if (
-          e.clientX <= 680 &&
-          e.clientX >= 580 &&
-          e.clientY <= 460 &&
-          e.clientY >= 430
-        ) {
-          console.log("controls");
+        console.log(e.x, e.y);
+        if (e.x > 520 && e.x < 680 && e.y > 430 && e.y < 460) {
+          game.controls = true;
+          game.menu = false;
+        }
+        if (e.x > 555 && e.x < 645 && e.y > 530 && e.y < 560) {
+          game.menu = false;
         }
       });
-      menu.draw(context);
+    }
+
+    if (game.controls) {
+      canvas.addEventListener("click", (e) => {
+        if (e.x > 970 && e.x < 1035 && e.y > 235 && e.y < 265) {
+          game.controls = false;
+          game.menu = true;
+        }
+      });
+      menu.controls(context);
     }
 
     if (!game.gameOver) requestAnimationFrame(animate);
 
-    if (!game.menu && !game.paused) game.update(deltaTime);
+    if (!game.menu && !game.controls && !game.paused) game.update(deltaTime);
 
     console.log(
       "menu",
