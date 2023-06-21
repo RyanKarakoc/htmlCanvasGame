@@ -5,8 +5,6 @@ export class UI {
     this.fontFamily = "Helvetica";
   }
   draw(context) {
-
-
     // paused
     if (this.game.paused) {
       context.fillStyle = "rgb(255,255,255,0.6)";
@@ -30,39 +28,43 @@ export class UI {
     // timer
     context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
     context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 80);
+
+    context.restore();
+
     // game over message
     if (this.game.gameOver) {
       context.textAlign = "center";
       context.font = this.fontSize * 2 + "px " + this.fontFamily;
 
-      if (this.game.score >= 5) {
-        context.fillStyle = "rgb(0,255,0,0.6)";
-        context.fillRect(0, 0, this.game.width, this.game.height);
-        context.fillStyle = "black";
-        context.fillText(
-          "Winner!",
-          this.game.width * 0.5,
-          this.game.height * 0.5
-        );
-      } else {
-        context.fillStyle = "rgb(255,0,0,0.6)";
-        context.fillRect(0, 0, this.game.width, this.game.height);
-        context.fillStyle = "black";
-        context.fillText(
-          "Game Over!",
-          this.game.width * 0.5,
-          this.game.height * 0.5
-        );
-        context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
-        context.fillStyle = "black";
-        context.fillText(
-          "You loose!",
-          this.game.width * 0.5,
-          this.game.height * 0.5 + 30
-        );
-      }
+      context.fillStyle = "rgb(0,0,0,0.8)";
+      context.fillRect(0, 0, this.game.width, this.game.height);
+      context.fillStyle = "white";
+      context.fillText(
+        "Game Over!",
+        this.game.width * 0.5,
+        this.game.height * 0.5 - 30
+      );
+      context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
+      context.fillStyle = "white";
+      context.fillText(
+        "You Scored",
+        this.game.width * 0.5,
+        this.game.height * 0.5
+      );
+      context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
+      context.fillStyle = "white";
+      context.fillText(
+        `${this.game.score} points!`,
+        this.game.width * 0.5,
+        this.game.height * 0.5 + 30
+      );
+      context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
+      context.fillStyle = "white";
+      context.fillText(
+        "Try Again!",
+        this.game.width * 0.5,
+        this.game.height * 0.5 + 80
+      );
     }
-
-    context.restore();
   }
 }

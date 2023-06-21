@@ -25,6 +25,7 @@
 #enemy_spider_big,
 #fire,
 #boom,
-#arrows {
+#arrows,
+#spacebar {
   display: none;
 }

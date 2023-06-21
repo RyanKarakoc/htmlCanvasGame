@@ -28,15 +28,18 @@ export class Game {
     this.debug = false;
     this.score = 0;
     this.fontColor = "black";
-    this.time = 0;
-    this.maxTime = 5000;
+    this.time = 5000;
+    this.minTime = 0;
     this.gameOver = false;
     this.player.currentState = this.player.states[0];
     this.player.currentState.enter();
   }
   update(deltaTime) {
-    this.time += deltaTime;
-    if (this.time >= this.maxTime) this.gameOver = true;
+    this.time -= deltaTime;
+    if (this.time <= this.minTime) {
+      this.gameOver = true;
+      this.time = 0;
+    }
     this.background.update();
     this.player.update(this.input.keys, deltaTime);
     // handle Enemies
@@ -67,7 +70,7 @@ export class Game {
       }
     });
   }
-  draw(context) {
+  draw(context, canvas) {
     this.background.draw(context);
     this.player.draw(context);
     this.enemies.forEach((enemy) => {

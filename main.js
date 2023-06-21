@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
   canvas.width = 900;
   canvas.height = 500;
 
-  const game = new Game(canvas.width, canvas.height);
+  const game = new Game(canvas.width, canvas.height, canvas);
   const menu = new Menu(game);
 
   let lastTime = 0;
@@ -20,6 +20,7 @@ window.addEventListener("load", function () {
 
     if (game.menu) {
       menu.draw(context);
+
       canvas.addEventListener("click", (e) => {
         console.log(e.x, e.y);
         if (e.x > 520 && e.x < 680 && e.y > 430 && e.y < 460) {
@@ -40,6 +41,14 @@ window.addEventListener("load", function () {
         }
       });
       menu.controls(context);
+    }
+
+    if (game.gameOver) {
+      canvas.addEventListener("click", (e) => {
+        if (e.x > 550 && e.x < 650 && e.y > 520 && e.y < 540) {
+          location.reload();
+        }
+      });
     }
 
     if (!game.gameOver) requestAnimationFrame(animate);

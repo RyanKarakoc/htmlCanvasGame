@@ -4,7 +4,10 @@ export class Menu {
     this.arrows = document.getElementById("arrows");
     this.arrows.width = 320;
     this.arrows.height = 320;
-    this.fontSize = 30;
+    this.fontSize = this.fontSize = 30;
+    this.spacebar = document.getElementById("spacebar");
+    this.spacebar.width = 361;
+    this.spacebar.height = 75;
   }
   draw(context) {
     context.fillStyle = "rgb(0,0,0,0.8)";
@@ -18,6 +21,15 @@ export class Menu {
     context.fillStyle = "white";
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
     context.fillText("CONTROLS", this.game.width * 0.5, this.game.height * 0.5);
+
+    context.textAlign = "center";
+    context.fillStyle = "white";
+    context.font = this.fontSize * 1 + "px " + this.fontFamily;
+    context.fillText(
+      "HIGHSCORES",
+      this.game.width * 0.5,
+      this.game.height * 0.6
+    );
 
     context.textAlign = "center";
     context.fillStyle = "white";
@@ -36,10 +48,17 @@ export class Menu {
     context.fillText("Back", this.game.width - 50, this.game.height - 450);
     context.drawImage(
       this.arrows,
-      0,
-      this.game.height * 0.5,
+      this.game.width * 0.02,
+      this.game.height * 0.46,
       this.arrows.width,
       this.arrows.height
+    );
+    context.drawImage(
+      this.spacebar,
+      this.game.width * 0.55,
+      this.game.height * 0.8,
+      this.spacebar.width,
+      this.spacebar.height
     );
   }
 }
