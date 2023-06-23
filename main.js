@@ -12,40 +12,27 @@ window.addEventListener("load", function () {
 
   let lastTime = 0;
 
+
   function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     game.draw(context);
 
     if (game.menu) {
       menu.draw(context);
-
-      canvas.addEventListener("click", (e) => {
-        console.log(e.x, e.y);
-        if (e.x > 520 && e.x < 680 && e.y > 430 && e.y < 460) {
-          game.controls = true;
-          game.menu = false;
-        }
-        if (e.x > 555 && e.x < 645 && e.y > 530 && e.y < 560) {
-          game.menu = false;
-        }
-      });
+      menu.update()
     }
 
-    if (game.controls) {
-      canvas.addEventListener("click", (e) => {
-        if (e.x > 970 && e.x < 1035 && e.y > 235 && e.y < 265) {
-          game.controls = false;
-          game.menu = true;
-        }
-      });
-      menu.controls(context);
+    if (menu.controls) {
+      menu.update()
+      menu.controlScreen(context);
     }
 
     if (game.gameOver) {
       canvas.addEventListener("click", (e) => {
-        if (e.x > 550 && e.x < 650 && e.y > 520 && e.y < 540) {
+        if (e.layerX > 405 && e.layerX < 505 && e.layerY > 315 && e.layerY < 345) {
           location.reload();
         }
       });
@@ -53,16 +40,9 @@ window.addEventListener("load", function () {
 
     if (!game.gameOver) requestAnimationFrame(animate);
 
-    if (!game.menu && !game.controls && !game.paused) game.update(deltaTime);
+    if (!game.menu && !menu.controls && !game.paused) game.update(deltaTime);
+    console.log(menu.menuOption1,menu.menuOption2 , menu.menuOption3)
 
-    console.log(
-      "menu",
-      game.menu,
-      "controls",
-      game.controls,
-      "play",
-      game.play
-    );
   }
   animate(0);
 });

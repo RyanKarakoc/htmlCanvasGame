@@ -65,6 +65,9 @@ export class UI {
         this.game.width * 0.5,
         this.game.height * 0.5 + 80
       );
+
+
+      }
     }
   }
-}
+

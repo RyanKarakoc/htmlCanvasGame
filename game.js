@@ -17,7 +17,7 @@ export class Game {
     this.UI = new UI(this);
     this.paused = false;
     this.menu = true;
-    this.controls = false;
+    this.highscores = false
     this.play = false;
     this.enemies = [];
     this.particles = [];
