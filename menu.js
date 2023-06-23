@@ -81,7 +81,7 @@ export class Menu {
     });
 
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" || e.key === "Backspace") {
+      if ((e.key === "Escape" || e.key === "Backspace") && !this.game.play) {
         this.controls = false;
         this.game.menu = true;
       } 
