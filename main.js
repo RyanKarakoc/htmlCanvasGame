@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
     if (!game.menu && !menu.controls && !game.paused && !game.gameOverMenu) {
       game.update(deltaTime);
     }
-    console.log(menu.menuOption1, menu.menuOption2, menu.menuOption3);
+    console.log(game.play);
   }
 
   animate(0);
