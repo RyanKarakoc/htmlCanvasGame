@@ -27,6 +27,9 @@ export class Sitting extends State {
     this.game.player.frameY = 5;
   }
   handleInput(input) {
+    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+      this.game.energyX -= 1;
+    }
     if (input.includes("ArrowLeft") || input.includes("ArrowRight")) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (input.includes(" ")) {
@@ -45,6 +48,9 @@ export class Running extends State {
     this.game.player.frameY = 3;
   }
   handleInput(input) {
+    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+      this.game.energyX -= 1;
+    }
     this.game.particles.push(
       new Dust(
         this.game,
@@ -73,6 +79,9 @@ export class Jumping extends State {
     this.game.player.frameY = 1;
   }
   handleInput(input) {
+    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+      this.game.energyX -= 1;
+    }
     if (this.game.player.vy > this.game.player.weight) {
       this.game.player.setState(states.FALLING, 2);
     } else if (input.includes(" ")) {
@@ -93,6 +102,9 @@ export class Falling extends State {
     this.game.player.frameY = 2;
   }
   handleInput(input) {
+    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+      this.game.energyX -= 1;
+    }
     if (this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (input.includes("ArrowDown")) {
@@ -118,6 +130,14 @@ export class Rolling extends State {
         this.game.player.y + this.game.player.height / 2
       )
     );
+    if (
+      this.game.width * 0.2 - this.game.energyX >= 179.8 ||
+      this.game.width * 0.2 - this.game.energyX >= 1.8
+    ) {
+      this.game.energyX += 2;
+    } else {
+      this.game.energy = true;
+    }
     if (!input.includes(" ") && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (!input.includes(" ") && !this.game.player.onGround()) {
@@ -145,6 +165,9 @@ export class Diving extends State {
     this.game.player.vy = 15;
   }
   handleInput(input) {
+    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+      this.game.energyX += 1;
+    }
     this.game.particles.unshift(
       new Fire(
         this.game,
@@ -179,6 +202,12 @@ export class Hit extends State {
     this.game.player.frameY = 4;
   }
   handleInput(input) {
+    if (
+      this.game.width * 0.2 - this.game.energyX >= 179.8 ||
+      this.game.width * 0.2 - this.game.energyX >= 1.8
+    ) {
+      this.game.energyX += 5;
+    }
     if (this.game.player.frameX >= 10 && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (this.game.player.frameX >= 10 && !this.game.player.onGround()) {

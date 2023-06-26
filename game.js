@@ -20,7 +20,8 @@ export class Game {
     this.gameOverMenu = false;
     this.highscores = false;
     this.play = false;
-    this.energy = 50;
+    this.energy = true;
+    this.energyX = 0.2;
     this.enemies = [];
     this.particles = [];
     this.collisions = [];

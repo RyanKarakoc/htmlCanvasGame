@@ -47,7 +47,13 @@ export class UI {
       context.drawImage(this.lives, 25 * i + 25, 90, 15, 15);
     }
     // energy
-
+    context.fillStyle = "rgb(0,150,255)";
+    context.fillRect(
+      22,
+      110,
+      this.game.width * 0.2 - this.game.energyX,
+      this.game.height * 0.04
+    );
     context.restore();
   }
 }
