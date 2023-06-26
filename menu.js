@@ -9,7 +9,7 @@ export class Menu {
     this.spacebar = document.getElementById("spacebar");
     this.spacebar.width = 361;
     this.spacebar.height = 75;
-    this.highlightedColor = "red";
+    this.highlightedColor = "rgb(0, 150, 255)";
     this.controls = false;
     this.menuOption1 = true;
     this.menuOption2 = false;
@@ -23,6 +23,11 @@ export class Menu {
   draw(context) {
     context.fillStyle = "rgb(0,0,0,0.8)";
     context.fillRect(0, 0, this.game.width, this.game.height);
+    context.save();
+    context.shadowOffsetX = 2;
+    context.shadowOffsetY = 2;
+    context.shadowColor = "black";
+    context.blur = 0;
     context.textAlign = "center";
     context.fillStyle = "white";
     context.font = this.fontSize * 2 + "px " + this.fontFamily;
@@ -52,6 +57,7 @@ export class Menu {
       : (context.fillStyle = "white");
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
     context.fillText("PLAY!", this.game.width * 0.5, this.game.height * 0.7);
+    context.restore();
   }
   controlScreen(context) {
     context.fillStyle = "rgb(0,0,0,0.8)";

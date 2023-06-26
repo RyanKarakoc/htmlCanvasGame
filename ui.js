@@ -3,7 +3,7 @@ export class UI {
     this.game = game;
     this.fontSize = 30;
     this.fontFamily = "Eater";
-    this.highlightedColor = "red";
+    this.highlightedColor = "rgb(0, 150, 255)";
     this.lives = document.getElementById("heart");
   }
   draw(context) {
@@ -19,19 +19,19 @@ export class UI {
     context.save();
     context.shadowOffsetX = 2;
     context.shadowOffsetY = 2;
-    context.shadowColor = "white";
+    context.shadowColor = "black";
     context.blur = 0;
     context.font = this.fontSize + "px " + this.fontFamily;
     context.textAlign = "left";
     context.fillStyle = this.game.fontColor;
 
     //score
-    context.fillStyle = "black";
+    context.fillStyle = "white";
     context.fillText("Score: ", 20, 50);
     context.fillStyle = this.highlightedColor;
     context.fillText(this.game.score, 140, 50);
     // timer
-    context.fillStyle = "black";
+    context.fillStyle = "white";
     context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
     context.fillText("Time: ", 20, 80);
     context.fillStyle = this.highlightedColor;
@@ -40,8 +40,8 @@ export class UI {
     for (let i = 0; i < this.game.lives; i++) {
       context.drawImage(this.lives, 22 * i + 22, 90, 15, 15);
     }
-    // energy 
-    
+    // energy
+
     context.restore();
   }
 }
