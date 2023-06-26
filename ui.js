@@ -9,12 +9,18 @@ export class UI {
   draw(context) {
     // paused
     if (this.game.paused) {
-      context.fillStyle = "rgb(255,255,255,0.6)";
+      context.fillStyle = "rgb(0,0,0,0.8)";
       context.fillRect(0, 0, this.game.width, this.game.height);
+      context.save();
+      context.shadowOffsetX = 2;
+      context.shadowOffsetY = 2;
+      context.shadowColor = "black";
+      context.blur = 0;
       context.textAlign = "center";
-      context.fillStyle = "black";
+      context.fillStyle = "rgb(0, 150, 255)";
       context.font = this.fontSize * 3 + "px " + this.fontFamily;
       context.fillText("PAUSED", this.game.width * 0.5, this.game.height * 0.5);
+      context.restore();
     }
     context.save();
     context.shadowOffsetX = 2;
@@ -38,7 +44,7 @@ export class UI {
     context.fillText((this.game.time * 0.001).toFixed(1), 110, 80);
     // hearts
     for (let i = 0; i < this.game.lives; i++) {
-      context.drawImage(this.lives, 22 * i + 22, 90, 15, 15);
+      context.drawImage(this.lives, 25 * i + 25, 90, 15, 15);
     }
     // energy
 
