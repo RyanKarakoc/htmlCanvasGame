@@ -55,7 +55,7 @@ export class Running extends State {
     if (input.includes("ArrowDown")) {
       this.game.player.setState(states.SITTING, 0);
     } else if (input.includes("ArrowUp")) {
-      this.game.player.setState(states.JUMPING, 1);
+      this.game.player.setState(states.JUMPING, 2);
     } else if (input.includes(" ")) {
       this.game.player.setState(states.ROLLING, 2);
     }
@@ -74,7 +74,7 @@ export class Jumping extends State {
   }
   handleInput(input) {
     if (this.game.player.vy > this.game.player.weight) {
-      this.game.player.setState(states.FALLING, 1);
+      this.game.player.setState(states.FALLING, 2);
     } else if (input.includes(" ")) {
       this.game.player.setState(states.ROLLING, 2);
     } else if (input.includes("ArrowDown")) {
@@ -121,7 +121,7 @@ export class Rolling extends State {
     if (!input.includes(" ") && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (!input.includes(" ") && !this.game.player.onGround()) {
-      this.game.player.setState(states.FALLING, 1);
+      this.game.player.setState(states.FALLING, 2);
     } else if (
       input.includes(" ") &&
       input.includes("ArrowUp") &&
@@ -182,7 +182,7 @@ export class Hit extends State {
     if (this.game.player.frameX >= 10 && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (this.game.player.frameX >= 10 && !this.game.player.onGround()) {
-      this.game.player.setState(states.FALLING, 1);
+      this.game.player.setState(states.FALLING, 2);
     }
   }
 }

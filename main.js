@@ -12,7 +12,6 @@ window.addEventListener("load", function () {
 
   let lastTime = 0;
 
-
   function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
@@ -22,17 +21,22 @@ window.addEventListener("load", function () {
 
     if (game.menu) {
       menu.draw(context);
-      menu.update()
+      menu.update();
     }
 
     if (menu.controls) {
-      menu.update()
+      menu.update();
       menu.controlScreen(context);
     }
 
     if (game.gameOver) {
       canvas.addEventListener("click", (e) => {
-        if (e.layerX > 405 && e.layerX < 505 && e.layerY > 315 && e.layerY < 345) {
+        if (
+          e.layerX > 405 &&
+          e.layerX < 505 &&
+          e.layerY > 315 &&
+          e.layerY < 345
+        ) {
           location.reload();
         }
       });
@@ -41,7 +45,6 @@ window.addEventListener("load", function () {
     if (!game.gameOver) requestAnimationFrame(animate);
 
     if (!game.menu && !menu.controls && !game.paused) game.update(deltaTime);
-
   }
   animate(0);
 });

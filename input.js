@@ -13,7 +13,8 @@ export class InputHandler {
       ) {
         this.keys.push(e.key);
       } else if (e.key === "d") this.game.debug = !this.game.debug;
-      else if ((e.key === "p" || e.key === "Escape") && this.game.play) this.game.paused = !this.game.paused;
+      else if ((e.key === "p" || e.key === "Escape") && this.game.play)
+        this.game.paused = !this.game.paused;
     });
     window.addEventListener("keyup", (e) => {
       if (

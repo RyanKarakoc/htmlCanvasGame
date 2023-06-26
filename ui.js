@@ -2,7 +2,8 @@ export class UI {
   constructor(game) {
     this.game = game;
     this.fontSize = 30;
-    this.fontFamily = "Helvetica";
+    this.fontFamily = "Eater";
+    this.highlightedColor = "red";
   }
   draw(context) {
     // paused
@@ -24,10 +25,16 @@ export class UI {
     context.fillStyle = this.game.fontColor;
 
     //score
-    context.fillText("Score: " + this.game.score, 20, 50);
+    context.fillStyle = "black";
+    context.fillText("Score: ", 20, 50);
+    context.fillStyle = this.highlightedColor;
+    context.fillText(this.game.score, 140, 50);
     // timer
+    context.fillStyle = "black";
     context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
-    context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 80);
+    context.fillText("Time: ", 20, 80);
+    context.fillStyle = this.highlightedColor;
+    context.fillText((this.game.time * 0.001).toFixed(1), 110, 80);
 
     context.restore();
 
@@ -38,25 +45,32 @@ export class UI {
 
       context.fillStyle = "rgb(0,0,0,0.8)";
       context.fillRect(0, 0, this.game.width, this.game.height);
-      context.fillStyle = "white";
+      context.fillStyle = this.highlightedColor;
       context.fillText(
         "Game Over!",
         this.game.width * 0.5,
-        this.game.height * 0.5 - 30
+        this.game.height * 0.5 - 60
       );
       context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
       context.fillStyle = "white";
       context.fillText(
-        "You Scored",
+        `You Scored       points!`,
         this.game.width * 0.5,
+        this.game.height * 0.5
+      );
+      context.font = this.fontSize * 1 + "px " + this.fontFamily;
+      context.fillStyle = this.highlightedColor;
+      context.fillText(
+        `${this.game.score}`,
+        this.game.width * 0.5 + 20,
         this.game.height * 0.5
       );
       context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
       context.fillStyle = "white";
       context.fillText(
-        `${this.game.score} points!`,
+        "Submit Score",
         this.game.width * 0.5,
-        this.game.height * 0.5 + 30
+        this.game.height * 0.5 + 40
       );
       context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
       context.fillStyle = "white";
@@ -65,9 +79,6 @@ export class UI {
         this.game.width * 0.5,
         this.game.height * 0.5 + 80
       );
-
-
-      }
     }
   }
-
+}
