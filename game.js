@@ -17,6 +17,7 @@ export class Game {
     this.UI = new UI(this);
     this.paused = false;
     this.menu = true;
+    this.gameOverMenu = false;
     this.highscores = false;
     this.play = false;
     this.energy = 50;
@@ -38,7 +39,7 @@ export class Game {
   update(deltaTime) {
     this.time -= deltaTime;
     if (this.time <= this.minTime) {
-      this.gameOver = true;
+      this.gameOverMenu = true;
       this.time = 0;
     }
     this.background.update();
