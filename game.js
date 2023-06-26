@@ -31,7 +31,7 @@ export class Game {
     this.debug = false;
     this.score = 0;
     this.fontColor = "black";
-    this.time = 5000;
+    this.time = 30000;
     this.minTime = 0;
     this.lives = 3;
     this.gameOver = false;

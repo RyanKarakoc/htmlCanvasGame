@@ -165,7 +165,10 @@ export class Diving extends State {
     this.game.player.vy = 15;
   }
   handleInput(input) {
-    if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
+    if (
+      this.game.width * 0.2 - this.game.energyX >= 179.8 ||
+      this.game.width * 0.2 - this.game.energyX >= 1.8
+    ) {
       this.game.energyX += 1;
     }
     this.game.particles.unshift(
