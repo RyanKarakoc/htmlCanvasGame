@@ -115,6 +115,10 @@ export class Player {
           this.game.score++;
         } else {
           this.setState(6, 0);
+          this.game.lives--;
+          if (this.game.lives <= 0) {
+            this.game.gameOverMenu = true;
+          }
         }
       }
     });
