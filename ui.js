@@ -40,6 +40,8 @@ export class UI {
     for (let i = 0; i < this.game.lives; i++) {
       context.drawImage(this.lives, 22 * i + 22, 90, 15, 15);
     }
+    // energy 
+    
     context.restore();
   }
 }
