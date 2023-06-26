@@ -6,6 +6,7 @@ export class GameOver {
     this.highlightedColor = "rgb(0, 150, 255)";
     this.gameOverOption1 = true;
     this.gameOverOption2 = false;
+    this.reload = false;
   }
   draw(context) {
     context.textAlign = "center";
@@ -64,6 +65,10 @@ export class GameOver {
         if (e.key === "ArrowDown") {
           this.gameOverOption1 = false;
           this.gameOverOption2 = true;
+          this.reload = true;
+        }
+        if (e.key === " " || e.key === "Enter") {
+          console.log("hello");
         }
       });
     }
@@ -73,18 +78,20 @@ export class GameOver {
         if (e.key === "ArrowUp") {
           this.gameOverOption1 = true;
           this.gameOverOption2 = false;
+          this.reload = false;
+        }
+      });
+    }
+
+    if (!this.gameOverOption1 && this.gameOverOption2) {
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && this.reload) {
+          location.reload();
         }
       });
     }
 
     // try again
-    if (!this.gameOverOption1 && this.gameOverOption2) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === " " || e.key === "Enter") {
-          location.reload();
-        }
-      });
-    }
     window.addEventListener("click", (e) => {
       if (
         e.layerX > 405 &&
