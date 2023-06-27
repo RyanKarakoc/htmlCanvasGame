@@ -67,7 +67,6 @@ export class Running extends State {
     } else if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 2);
     } else if (input.includes(" ")) {
-      console.log("hello");
       this.game.player.setState(states.ROLLING, 2);
     }
   }

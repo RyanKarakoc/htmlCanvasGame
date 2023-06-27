@@ -5,23 +5,10 @@ export class UI {
     this.fontFamily = "Eater";
     this.highlightedColor = "rgb(0, 150, 255)";
     this.lives = document.getElementById("heart");
+    this.pausedOption1 = true;
+    this.pausedOption2 = false;
   }
   draw(context) {
-    // paused
-    if (this.game.paused) {
-      context.fillStyle = "rgb(0,0,0,0.8)";
-      context.fillRect(0, 0, this.game.width, this.game.height);
-      context.save();
-      context.shadowOffsetX = 2;
-      context.shadowOffsetY = 2;
-      context.shadowColor = "black";
-      context.blur = 0;
-      context.textAlign = "center";
-      context.fillStyle = "rgb(0, 150, 255)";
-      context.font = this.fontSize * 3 + "px " + this.fontFamily;
-      context.fillText("PAUSED", this.game.width * 0.5, this.game.height * 0.5);
-      context.restore();
-    }
     context.save();
     context.shadowOffsetX = 2;
     context.shadowOffsetY = 2;

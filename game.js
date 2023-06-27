@@ -30,15 +30,18 @@ export class Game {
     this.enemyInterval = 1000;
     this.debug = false;
     this.score = 0;
+    this.timeBonus = false;
     this.fontColor = "black";
     this.time = 30000;
     this.minTime = 0;
+    this.timeInterval = 0;
     this.lives = 6;
     this.gameOver = false;
     this.player.currentState = this.player.states[0];
     this.player.currentState.enter();
   }
   update(deltaTime) {
+    this.timeInterval = deltaTime;
     this.time -= deltaTime;
     if (this.time <= this.minTime) {
       this.gameOverMenu = true;
