@@ -36,6 +36,16 @@ export class GameOverMenu {
       "x",
       "y",
       "z",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "0",
     ];
     this.submitScoreOption1 = true;
     this.submitScoreOption2 = false;
