@@ -109,10 +109,11 @@ export class Player {
           )
         );
         if (
-          this.currentState === this.states[4] ||
-          this.currentState === this.states[5]
+          (this.currentState === this.states[4] && this.game.energy) ||
+          (this.currentState === this.states[5] && this.game.energy)
         ) {
           this.game.score++;
+          this.game.energyX -= 20;
         } else {
           this.setState(6, 0);
           this.game.lives--;

@@ -30,7 +30,11 @@ export class Sitting extends State {
     if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
       this.game.energyX -= 1;
     }
-    if (input.includes("ArrowLeft") || input.includes("ArrowRight")) {
+    if (
+      input.includes("ArrowLeft") ||
+      input.includes("ArrowRight") ||
+      !this.game.energy
+    ) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (input.includes(" ")) {
       this.game.player.setState(states.ROLLING, 2);
@@ -63,6 +67,7 @@ export class Running extends State {
     } else if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 2);
     } else if (input.includes(" ")) {
+      console.log("hello");
       this.game.player.setState(states.ROLLING, 2);
     }
   }
@@ -123,13 +128,16 @@ export class Rolling extends State {
     this.game.player.frameY = 6;
   }
   handleInput(input) {
-    this.game.particles.unshift(
-      new Fire(
-        this.game,
-        this.game.player.x + this.game.player.width / 2,
-        this.game.player.y + this.game.player.height / 2
-      )
-    );
+    if (this.game.energy) {
+      this.game.particles.unshift(
+        new Fire(
+          this.game,
+          this.game.player.x + this.game.player.width / 2,
+          this.game.player.y + this.game.player.height / 2
+        )
+      );
+      
+    }
     if (
       this.game.width * 0.2 - this.game.energyX >= 179.8 ||
       this.game.width * 0.2 - this.game.energyX >= 1.8
@@ -138,7 +146,9 @@ export class Rolling extends State {
     } else {
       this.game.energy = true;
     }
-    if (!input.includes(" ") && this.game.player.onGround()) {
+    if (
+      (!input.includes(" ") && this.game.player.onGround())
+    ) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (!input.includes(" ") && !this.game.player.onGround()) {
       this.game.player.setState(states.FALLING, 2);

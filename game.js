@@ -73,6 +73,13 @@ export class Game {
         this.collisions.splice(index, 1);
       }
     });
+    // handle energy
+    if (
+      this.width * 0.2 - this.energyX >= 179.8 ||
+      this.width * 0.2 - this.energyX >= 1.8
+    ) {
+      this.energy = true;
+    } else this.energy = false;
   }
   draw(context, canvas) {
     this.background.draw(context);
