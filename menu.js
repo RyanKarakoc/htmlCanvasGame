@@ -86,41 +86,10 @@ export class Menu {
   }
   update() {
     // controlls -> menu
-    window.addEventListener("click", (e) => {
-      if (e.layerX > 825 && e.layerX < 885 && e.layerY > 35 && e.layerY < 60) {
-        this.controls = false;
-        this.game.menu = true;
-      }
-    });
-    // controlls -> menu
     window.addEventListener("keydown", (e) => {
       if ((e.key === "Escape" || e.key === "Backspace") && !this.game.play) {
         this.controls = false;
         this.game.menu = true;
-      }
-    });
-    // menu -> controls
-    window.addEventListener("click", (e) => {
-      if (
-        e.layerX > 370 &&
-        e.layerX < 540 &&
-        e.layerY > 230 &&
-        e.layerY < 260
-      ) {
-        this.controls = true;
-        this.game.menu = false;
-      }
-    });
-    // menu -> play
-    window.addEventListener("click", (e) => {
-      if (
-        e.layerX > 405 &&
-        e.layerX < 500 &&
-        e.layerY > 330 &&
-        e.layerY < 360
-      ) {
-        this.game.menu = false;
-        this.game.play = true;
       }
     });
     // highlight controlls -> highscores

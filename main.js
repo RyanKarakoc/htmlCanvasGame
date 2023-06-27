@@ -1,7 +1,8 @@
 import { Game } from "./game.js";
 import { Menu } from "./menu.js";
 import { Paused } from "./paused.js";
-import { GameOver } from "./gameOver.js";
+import { GameOverMenu } from "./gameOverMenu.js";
+import { SubmitScore } from "./sumbitScore.js";
 
 window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -12,7 +13,8 @@ window.addEventListener("load", function () {
   const game = new Game(canvas.width, canvas.height, canvas);
   const menu = new Menu(game);
   const paused = new Paused(game);
-  const gameOver = new GameOver(game);
+  const submitScore = new SubmitScore(game);
+  const gameOverMenu = new GameOverMenu(game);
 
   let lastTime = 0;
 
@@ -33,22 +35,35 @@ window.addEventListener("load", function () {
       menu.controlScreen(context);
     }
 
-    if (game.paused) {
+    if (game.paused && !gameOverMenu.submitScore) {
       paused.draw(context);
       paused.update();
     }
 
     if (game.gameOverMenu) {
-      gameOver.draw(context);
-      gameOver.update();
+      gameOverMenu.draw(context);
+      gameOverMenu.update(context);
+    }
+    if (gameOverMenu.submitScore) {
+      gameOverMenu.update();
+      gameOverMenu.submitScoreScreen(context);
     }
 
     if (!game.gameOver) requestAnimationFrame(animate);
 
-    if (!game.menu && !menu.controls && !game.paused && !game.gameOverMenu) {
+    if (
+      !game.menu &&
+      !menu.controls &&
+      !game.paused &&
+      !game.gameOverMenu &&
+      !gameOverMenu.submit
+    ) {
       game.update(deltaTime);
     }
-    console.log(game.paused);
+    console.log(
+      gameOverMenu.submitScoreOption1,
+      gameOverMenu.submitScoreOption2
+    );
   }
 
   animate(0);

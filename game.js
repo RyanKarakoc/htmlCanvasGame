@@ -18,6 +18,7 @@ export class Game {
     this.paused = false;
     this.menu = true;
     this.gameOverMenu = false;
+    this.username = [];
     this.highscores = false;
     this.play = false;
     this.energy = true;
@@ -43,7 +44,7 @@ export class Game {
   update(deltaTime) {
     this.timeInterval = deltaTime;
     this.time -= deltaTime;
-    if (this.time <= this.minTime) {
+    if (this.time <= this.minTime && !this.submitScore && !this.gameOverMenu) {
       this.gameOverMenu = true;
       this.time = 0;
     }
