@@ -33,7 +33,7 @@ export class Game {
     this.fontColor = "black";
     this.time = 30000;
     this.minTime = 0;
-    this.lives = 3;
+    this.lives = 6;
     this.gameOver = false;
     this.player.currentState = this.player.states[0];
     this.player.currentState.enter();

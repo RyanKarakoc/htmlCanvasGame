@@ -28,7 +28,7 @@ export class Sitting extends State {
   }
   handleInput(input) {
     if (this.game.width * 0.2 - this.game.energyX <= 179.8) {
-      this.game.energyX -= 1;
+      this.game.energyX -= 5;
     }
     if (
       input.includes("ArrowLeft") ||
@@ -136,19 +136,16 @@ export class Rolling extends State {
           this.game.player.y + this.game.player.height / 2
         )
       );
-      
     }
     if (
       this.game.width * 0.2 - this.game.energyX >= 179.8 ||
       this.game.width * 0.2 - this.game.energyX >= 1.8
     ) {
-      this.game.energyX += 2;
+      this.game.energyX += 1;
     } else {
       this.game.energy = true;
     }
-    if (
-      (!input.includes(" ") && this.game.player.onGround())
-    ) {
+    if (!input.includes(" ") && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (!input.includes(" ") && !this.game.player.onGround()) {
       this.game.player.setState(states.FALLING, 2);
