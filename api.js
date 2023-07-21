@@ -4,14 +4,14 @@ const highscoresAPI = axios.create({
   baseURL: "https://htmlcanvasgamebackend.onrender.com/api",
 });
 
-const fetchHighscores = () => {
+export const fetchHighscores = () => {
   return highscoresAPI.get("/highscores").then((response) => {
     console.log(response.data);
     return response.data;
   });
 };
 
-const fetchHighscoresByUsername = (username) => {
+export const fetchHighscoresByUsername = (username) => {
   return highscoresAPI
     .get(`/highscore?username=${username}`)
     .then((response) => {
@@ -20,7 +20,7 @@ const fetchHighscoresByUsername = (username) => {
     });
 };
 
-const postNewHighscore = (username, score) => {
+export const postNewHighscore = (username, score) => {
   postObject = {
     username: username,
     score: score,
@@ -30,7 +30,3 @@ const postNewHighscore = (username, score) => {
     return response.data;
   });
 };
-
-// postNewHighscore("mike", 12);
-// fetchHighscores();
-fetchHighscoresByUsername("eggo");
