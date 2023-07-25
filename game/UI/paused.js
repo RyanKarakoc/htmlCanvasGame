@@ -33,39 +33,36 @@ export class Paused {
     context.fillText("Restart", this.game.width * 0.5, this.game.height * 0.7);
     context.restore();
   }
+
   update() {
+    this.game.paused = true;
     if (this.pausedOption1 && !this.pausedOption2) {
       window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowDown") {
           this.pausedOption1 = false;
           this.pausedOption2 = true;
-          this.return = false;
-          this.restart = true;
+        }
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          this.pausedOption1 &&
+          !this.pausedOption2
+        ) {
+          this.game.paused = false;
         }
       });
     }
+
     if (!this.pausedOption1 && this.pausedOption2) {
       window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowUp") {
           this.pausedOption1 = true;
           this.pausedOption2 = false;
-          this.return = true;
-          this.restart = false;
         }
-      });
-    }
-    if (this.pausedOption1 && !this.pausedOption2) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === " " || (e.key === "Enter" && this.return)) {
-          this.game.paused = false;
-          this.pausedOption1 = true;
-          this.pausedOption2 = false;
-        }
-      });
-    }
-    if (!this.pausedOption1 && this.pausedOption2) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === " " || (e.key === "Enter" && this.restart)) {
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          !this.pausedOption1 &&
+          this.pausedOption2
+        ) {
           location.reload();
         }
       });

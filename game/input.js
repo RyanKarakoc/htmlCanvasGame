@@ -12,13 +12,15 @@ export class InputHandler {
         this.keys.indexOf(e.key) === -1
       ) {
         this.keys.push(e.key);
-      } else if (e.key === "d") this.game.debug = !this.game.debug;
-      else if (
+      } else if (
         (e.key === "p" || e.key === "P" || e.key === "Escape") &&
-        this.game.play &&
-        !this.game.gameOverMenu
-      )
+        this.game.play
+      ) {
+        console.log("1");
         this.game.paused = !this.game.paused;
+        // this.game.paused = !this.game.paused;
+      }
+      if (e.key === "d" && this.game.play) this.game.debug = !this.game.debug;
     });
     window.addEventListener("keyup", (e) => {
       if (

@@ -4,8 +4,7 @@ export const fetchHighscores = () => {
   return fetch(`${baseURL}/highscores`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      return data;
+      return data.data;
     });
 };
 
@@ -13,7 +12,7 @@ export const fetchHighscoresByUsername = (username) => {
   return fetch(`${baseURL}/highscore?username=${username}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.data);
       return data;
     });
 };
@@ -32,7 +31,11 @@ export const postNewHighscore = (username, score) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.data);
       return data;
     });
 };
+
+// fetchHighscores();
+// fetchHighscoresByUsername("ryan");
+// postNewHighscore("nick", 5);

@@ -8,7 +8,7 @@ import {
   Hit,
 } from "./playerStates.js";
 
-import { CollisionAnimation } from "./collisionAnimation.js";
+import { CollisionAnimation } from "../collisionAnimation.js";
 
 export class Player {
   constructor(game, detaTime) {
