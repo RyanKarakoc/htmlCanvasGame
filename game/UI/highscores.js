@@ -7,13 +7,13 @@ export class Highscores {
     this.fontFamily = "Eater";
     this.fontSize = this.fontSize = 30;
     this.data = [];
-    this.testData = [
-      [1, "ryan", 10],
-      [2, "ryan", 7],
-      [3, "ryan", 4],
-      [4, "ryan", 3],
-      [5, "ryan", 1],
-    ];
+    // this.data = [
+    //   [1, "ryan", 10],
+    //   [2, "ryan", 7],
+    //   [3, "ryan", 4],
+    //   [4, "ryan", 3],
+    //   [5, "ryan", 1],
+    // ];
     this.getHighscores = true;
   }
   draw(context) {
@@ -32,7 +32,7 @@ export class Highscores {
       this.game.width * 0.5,
       this.game.height * 0.2
     );
-    if (this.testData.length < 1) {
+    if (this.data.length < 1) {
       context.font = this.fontSize * 0.75 + "px " + this.fontFamily;
       context.fillText(
         "Loading...",
@@ -42,22 +42,22 @@ export class Highscores {
     } else {
       context.font = this.fontSize * 0.75 + "px " + this.fontFamily;
       let yOffset = 0;
-      for (let i = 0; i < this.testData.length; i++) {
+      for (let i = 0; i < this.data.length; i++) {
         context.fillStyle = "yellow";
         context.fillText(
-          this.testData[i][0],
+          [i + 1],
           this.game.width * 0.5 - 150,
           this.game.height * 0.4 + yOffset
         );
         context.fillStyle = "white";
         context.fillText(
-          this.testData[i][1],
+          this.data[i][0],
           this.game.width * 0.5,
           this.game.height * 0.4 + yOffset
         );
         context.fillStyle = "lime";
         context.fillText(
-          this.testData[i][2],
+          this.data[i][1],
           this.game.width * 0.5 + 150,
           this.game.height * 0.4 + yOffset
         );
@@ -67,13 +67,13 @@ export class Highscores {
     context.restore();
   }
   update() {
-    // if (this.getHighscores) {
-    //   fetchHighscores().then((response) => {
-    //     console.log(response);
-    //     this.data = response;
-    //   });
-    //   this.getHighscores = false;
-    // }
+    if (this.getHighscores) {
+      fetchHighscores().then((response) => {
+        console.log(response);
+        this.data = response;
+      });
+      this.getHighscores = false;
+    }
     if (this.game.screens[0] === "highscoreScreen" && !this.game.play) {
       console.log("highscore");
       window.addEventListener("keydown", (e) => {

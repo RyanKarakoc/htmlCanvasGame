@@ -53,7 +53,7 @@ window.addEventListener("load", function () {
 
     if (game.screens[0] === "submitScoreScreen") {
       submitScore.draw(context);
-      submitScore.update();
+      submitScore.update(context);
     }
 
     if (game.paused) {

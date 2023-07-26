@@ -3,6 +3,7 @@ import { InputHandler } from "./input.js";
 import { Background } from "./backgound.js";
 import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from "./enemies.js";
 import { UI } from "./UI/ui.js";
+import { Highscores } from "./UI/highscores.js";
 
 export class Game {
   constructor(width, height) {
@@ -14,6 +15,7 @@ export class Game {
     this.background = new Background(this);
     this.player = new Player(this);
     this.input = new InputHandler(this);
+    this.highscores = new Highscores(this);
     this.UI = new UI(this);
     this.paused = false;
     this.username = [];
@@ -29,7 +31,7 @@ export class Game {
     this.score = 0;
     this.timeBonus = false;
     this.fontColor = "black";
-    this.time = 5000;
+    this.time = 1000;
     this.minTime = 0;
     this.timeInterval = 0;
     this.lives = 6;

@@ -1,3 +1,5 @@
+import { fetchHighscores, postNewHighscore } from "../../api.js";
+
 export class SubmitScore {
   constructor(game) {
     this.game = game;
@@ -46,6 +48,10 @@ export class SubmitScore {
       "0",
     ];
     this.newKey = true;
+    this.readyToSubmit = true;
+    this.usernameTaken = false;
+    this.getHighscores = true;
+    this.highscores = [];
   }
   draw(context) {
     context.textAlign = "center";
@@ -95,12 +101,21 @@ export class SubmitScore {
     context.shadowOffsetY = 2;
     context.shadowColor = "black";
     context.blur = 0;
+    if (this.usernameTaken) {
+      context.font = this.fontSize * 0.5 + "px " + this.fontFamily;
+      context.fillStyle = "red";
+      context.fillText(
+        "username taken",
+        this.game.width * 0.5,
+        this.game.height * 0.59
+      );
+    }
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
     context.fillStyle = this.highlightedColor;
     context.fillText(
       `username: ${this.game.username.join("")}`,
       this.game.width * 0.5,
-      this.game.height * 0.65
+      this.game.height * 0.66
     );
 
     context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
@@ -116,6 +131,21 @@ export class SubmitScore {
   }
   update() {
     this.newKey = true;
+    this.username = this.game.username.join("");
+
+    if (this.getHighscores) {
+      fetchHighscores().then((response) => {
+        console.log(response);
+        this.highscores = response;
+      });
+      this.getHighscores = false;
+    }
+    for (let i = 0; i < this.highscores.length; i++) {
+      if (this.highscores[i].includes(this.username)) {
+        this.usernameTaken = true;
+      }
+    }
+
     if (this.submitScoreOption1 && !this.submitScoreOption2) {
       window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowDown") {
@@ -126,9 +156,11 @@ export class SubmitScore {
           this.submitScoreOption1 = true;
           this.submitScoreOption2 = false;
         }
-        if (this.newKey && e.key === "Backspace") {
+        if (this.newKey && e.key === "Backspace" && this.submitScoreOption1) {
           this.game.username.pop();
           this.newKey = false;
+          this.usernameTaken = false;
+          this.readyToSubmit = true;
         }
         if (
           this.newKey &&
@@ -137,13 +169,26 @@ export class SubmitScore {
           this.submitScoreOption1
         ) {
           this.game.username.push(e.key);
+          this.usernameTaken = false;
+          this.readyToSubmit = true;
           this.newKey = false;
         }
       });
     }
-    if (this.submitScoreOption1 && !this.submitScoreOption2) {
+
+    if (
+      !this.submitScoreOption1 &&
+      this.submitScoreOption2 &&
+      !this.usernameTaken
+    ) {
       window.addEventListener("keydown", (e) => {
-        
+        if (e.key === "Enter" && this.readyToSubmit) {
+          postNewHighscore(this.username, this.game.score);
+          console.log("posted");
+          this.readyToSubmit = false;
+          this.getHighscores = true;
+          this.game.screens[0] = "highscoreScreen";
+        }
       });
     }
   }
