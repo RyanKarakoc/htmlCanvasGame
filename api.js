@@ -12,8 +12,7 @@ export const fetchHighscoresByUsername = (username) => {
   return fetch(`${baseURL}/highscore?username=${username}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.data);
-      return data;
+      return data.data;
     });
 };
 
@@ -38,4 +37,4 @@ export const postNewHighscore = (username, score) => {
 
 // fetchHighscores();
 // fetchHighscoresByUsername("ryan");
-// postNewHighscore("rupert", 5);
+postNewHighscore("tester12", 5);

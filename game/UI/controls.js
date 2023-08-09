@@ -21,7 +21,7 @@ export class ControlsScreen {
     context.fillText("CONTROLS", this.game.width * 0.5, this.game.height * 0.3);
     context.fillStyle = "white";
     context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
-    context.fillText("Back", this.game.width - 50, this.game.height - 450);
+    context.fillText("Esc", this.game.width - 50, this.game.height - 450);
     context.drawImage(
       this.arrows,
       this.game.width * 0.02,
@@ -41,7 +41,7 @@ export class ControlsScreen {
     if (this.game.screens[0] === "controlsScreen" && !this.game.play)
       console.log("controls");
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Backspace" || e.key === "Escape") {
+      if (e.key === "Escape") {
         this.game.screens[0] = "mainMenu";
       }
     });

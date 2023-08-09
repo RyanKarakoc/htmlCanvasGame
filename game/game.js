@@ -31,7 +31,7 @@ export class Game {
     this.score = 0;
     this.timeBonus = false;
     this.fontColor = "black";
-    this.time = 1000;
+    this.time = 10000;
     this.minTime = 0;
     this.timeInterval = 0;
     this.lives = 6;
@@ -41,8 +41,47 @@ export class Game {
     this.play = false;
     this.screens = ["mainMenu"];
     this.paused = false;
+    this.alphabet = [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "0",
+    ];
   }
   update(deltaTime) {
+    this.username = [];
     this.timeInterval = deltaTime;
     this.time -= deltaTime;
     if (this.time <= this.minTime) {

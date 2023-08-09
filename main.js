@@ -24,7 +24,7 @@ window.addEventListener("load", function () {
   let lastTime = 0;
 
   function animate(timeStamp) {
-    console.log(game.screens, game.paused);
+    // console.log(game.screens, game.paused);
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 

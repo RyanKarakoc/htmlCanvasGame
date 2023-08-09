@@ -9,44 +9,6 @@ export class SubmitScore {
     this.submitScoreOption1 = true;
     this.submitScoreOption2 = false;
     this.username = "";
-    this.alphabet = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "0",
-    ];
     this.newKey = true;
     this.readyToSubmit = true;
     this.usernameTaken = false;
@@ -140,6 +102,7 @@ export class SubmitScore {
       });
       this.getHighscores = false;
     }
+
     for (let i = 0; i < this.highscores.length; i++) {
       if (this.highscores[i].includes(this.username)) {
         this.usernameTaken = true;
@@ -165,7 +128,7 @@ export class SubmitScore {
         if (
           this.newKey &&
           this.game.username.length < 14 &&
-          this.alphabet.includes(e.key) &&
+          this.game.alphabet.includes(e.key) &&
           this.submitScoreOption1
         ) {
           this.game.username.push(e.key);
@@ -187,6 +150,7 @@ export class SubmitScore {
           console.log("posted");
           this.readyToSubmit = false;
           this.getHighscores = true;
+          location.reload();
           this.game.screens[0] = "highscoreScreen";
         }
       });
