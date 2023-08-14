@@ -1,4 +1,6 @@
-export class Menu {
+import { ControlsScreen } from "./controls.js";
+
+export class MainMenu {
   constructor(game) {
     this.game = game;
     this.fontFamily = "Eater";
@@ -8,8 +10,38 @@ export class Menu {
     this.fps = 2;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
-    this.highlighted = "controls";
+    this.menuOption = ["controls"];
+    this.navigation = false;
+    this.addEventListener();
   }
+  addEventListener() {
+    window.addEventListener("keydown", this.keydownHandler);
+  }
+  removeEventListener() {
+    window.removeEventListener("keydown", this.keydownHandler);
+  }
+  keydownHandler = (e) => {
+    if (this.game.screen[0] === "mainMenu") {
+      if (e.key === "ArrowDown") {
+        if (this.menuOption[0] === "controls") {
+          this.menuOption[0] = "highscores";
+        } else if (this.menuOption[0] === "highscores") {
+          this.menuOption[0] = "play";
+        }
+      } else if (e.key === "ArrowUp") {
+        if (this.menuOption[0] === "highscores") {
+          this.menuOption[0] = "controls";
+        } else if (this.menuOption[0] === "play") {
+          this.menuOption[0] = "highscores";
+        }
+      } else if (e.key === "Enter") {
+        if (this.menuOption[0] === "controls") {
+          this.game.screen[0] = "controls";
+        }
+      }
+    }
+  };
+
   draw(context) {
     context.fillStyle = "rgb(0,0,0,0.8)";
     context.fillRect(0, 0, this.game.width, this.game.height);
@@ -24,14 +56,14 @@ export class Menu {
     context.fillText("WELCOME", this.game.width * 0.5, this.game.height * 0.3);
 
     context.textAlign = "center";
-    this.menuOption1
+    this.menuOption[0] === "controls" || this.menuOption.length === 0
       ? (context.fillStyle = this.highlightedColor)
       : (context.fillStyle = "white");
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
     context.fillText("CONTROLS", this.game.width * 0.5, this.game.height * 0.5);
 
     context.textAlign = "center";
-    this.menuOption2
+    this.menuOption[0] === "highscores"
       ? (context.fillStyle = this.highlightedColor)
       : (context.fillStyle = "white");
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
@@ -42,12 +74,14 @@ export class Menu {
     );
 
     context.textAlign = "center";
-    this.menuOption3
+    this.menuOption[0] === "play"
       ? (context.fillStyle = this.highlightedColor)
       : (context.fillStyle = "white");
     context.font = this.fontSize * 1 + "px " + this.fontFamily;
     context.fillText("PLAY!", this.game.width * 0.5, this.game.height * 0.7);
     context.restore();
   }
-  update() {}
+  update(context) {
+    this.game.play = false;
+  }
 }
