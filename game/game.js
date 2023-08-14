@@ -3,7 +3,6 @@ import { InputHandler } from "./input.js";
 import { Background } from "./backgound.js";
 import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from "./enemies.js";
 import { UI } from "./UI/ui.js";
-import { Highscores } from "./UI/highscores.js";
 
 export class Game {
   constructor(width, height) {
@@ -15,7 +14,6 @@ export class Game {
     this.background = new Background(this);
     this.player = new Player(this);
     this.input = new InputHandler(this);
-    this.highscores = new Highscores(this);
     this.UI = new UI(this);
     this.paused = false;
     this.username = [];
@@ -38,54 +36,14 @@ export class Game {
     this.gameOver = false;
     this.player.currentState = this.player.states[0];
     this.player.currentState.enter();
-    this.play = false;
-    this.screens = ["mainMenu"];
+    this.play = true;
     this.paused = false;
-    this.alphabet = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "0",
-    ];
+    this.screen = [];
   }
   update(deltaTime) {
-    this.username = [];
     this.timeInterval = deltaTime;
     this.time -= deltaTime;
     if (this.time <= this.minTime) {
-      this.screens[0] = "gameOverScreen";
       this.time = 0;
       this.play = false;
     }

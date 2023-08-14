@@ -16,7 +16,6 @@ export class InputHandler {
         (e.key === "p" || e.key === "P" || e.key === "Escape") &&
         this.game.play
       ) {
-        console.log("1");
         this.game.paused = !this.game.paused;
         // this.game.paused = !this.game.paused;
       }

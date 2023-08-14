@@ -37,4 +37,4 @@ export const postNewHighscore = (username, score) => {
 
 // fetchHighscores();
 // fetchHighscoresByUsername("ryan");
-postNewHighscore("tester12", 5);
+// postNewHighscore("tester12", 5);
