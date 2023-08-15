@@ -47,7 +47,9 @@ export class Highscores {
         this.highscoreOption[0] = "search";
       } else if (e.key === "Enter") {
         if (this.highscoreOption[0] === "search") {
-          this.game.screen[0] = "searchUser";
+          setTimeout(() => {
+            this.game.screen[0] = "searchUser";
+          }, 100);
         }
       } else if (e.key === "Escape") {
         location.reload();

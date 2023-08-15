@@ -128,6 +128,7 @@ export class SearchUser {
     }
   }
   update() {
+    console.log(this.username);
     if (this.getHighscores) {
       fetchHighscores().then((response) => {
         this.allData = response;
