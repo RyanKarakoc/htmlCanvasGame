@@ -20,7 +20,7 @@ export class ControlsScreen {
   keydownHandler = (e) => {
     if (this.game.screen[0] === "controls") {
       if (e.key === "Escape") {
-        this.game.screen[0] = "mainMenu";
+        location.reload();
       }
     }
   };

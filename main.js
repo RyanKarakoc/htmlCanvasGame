@@ -1,6 +1,8 @@
 import { Game } from "./game/game.js";
 import { Paused } from "./game/Screens/paused.js";
 import { ControlsScreen } from "./game/Screens/controls.js";
+import { Highscores } from "./game/Screens/highscores.js";
+import { SearchUser } from "./game/Screens/searchUser.js";
 
 window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -10,17 +12,13 @@ window.addEventListener("load", function () {
 
   const game = new Game(canvas.width, canvas.height, canvas);
   const controlScreen = new ControlsScreen(game);
+  const highscores = new Highscores(game);
+  const searchUser = new SearchUser(game);
   const paused = new Paused(game);
 
   let lastTime = 0;
 
   function animate(timeStamp) {
-    console.log(
-      "Game Screen",
-      game.screen,
-      "Menu Option",
-      game.mainMenu.menuOption
-    );
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
@@ -35,6 +33,16 @@ window.addEventListener("load", function () {
     if (game.screen[0] === "controls") {
       controlScreen.draw(context);
       controlScreen.update();
+    }
+
+    if (game.screen[0] === "highscores") {
+      highscores.draw(context);
+      highscores.update();
+    }
+
+    if (game.screen[0] === "searchUser") {
+      searchUser.draw(context);
+      searchUser.update();
     }
 
     if (game.paused) {

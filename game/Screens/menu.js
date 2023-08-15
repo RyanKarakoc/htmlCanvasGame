@@ -37,6 +37,8 @@ export class MainMenu {
       } else if (e.key === "Enter") {
         if (this.menuOption[0] === "controls") {
           this.game.screen[0] = "controls";
+        } else if (this.menuOption[0] === "highscores") {
+          this.game.screen[0] = "highscores";
         }
       }
     }
