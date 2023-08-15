@@ -132,9 +132,6 @@ export class SearchUser {
     }
   }
   update() {
-    console.log(this.errorMsg);
-    console.log("user", this.username.join(""), "rank", this.rank);
-    this.game.play = false;
     if (this.getHighscores) {
       fetchHighscores().then((response) => {
         this.allData = response;

@@ -40,7 +40,7 @@ export class Game {
     this.player.currentState.enter();
     this.play = false;
     this.paused = false;
-    this.screen = ["mainMenu"];
+    this.screen = ["gameOver"];
   }
   update(deltaTime) {
     this.timeInterval = deltaTime;

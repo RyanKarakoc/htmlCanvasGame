@@ -39,6 +39,9 @@ export class MainMenu {
           this.game.screen[0] = "controls";
         } else if (this.menuOption[0] === "highscores") {
           this.game.screen[0] = "highscores";
+        } else if (this.menuOption[0] === "play") {
+          this.game.play = true;
+          this.game.screen[0] = "play";
         }
       }
     }
@@ -83,7 +86,5 @@ export class MainMenu {
     context.fillText("PLAY!", this.game.width * 0.5, this.game.height * 0.7);
     context.restore();
   }
-  update(context) {
-    this.game.play = false;
-  }
+  update(context) {}
 }

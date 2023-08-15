@@ -49,7 +49,5 @@ export class ControlsScreen {
       this.spacebar.height
     );
   }
-  update() {
-    this.game.play = false;
-  }
+  update() {}
 }

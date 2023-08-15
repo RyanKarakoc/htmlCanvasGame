@@ -135,7 +135,6 @@ export class Highscores {
     context.restore();
   }
   update() {
-    this.game.play = false;
     if (this.getHighscores) {
       fetchHighscores().then((response) => {
         this.data = response;

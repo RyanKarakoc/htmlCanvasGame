@@ -3,6 +3,7 @@ import { Paused } from "./game/Screens/paused.js";
 import { ControlsScreen } from "./game/Screens/controls.js";
 import { Highscores } from "./game/Screens/highscores.js";
 import { SearchUser } from "./game/Screens/searchUser.js";
+import { GameOverScreen } from "./game/Screens/gameOver.js";
 
 window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -11,14 +12,16 @@ window.addEventListener("load", function () {
   canvas.height = 500;
 
   const game = new Game(canvas.width, canvas.height, canvas);
+  const paused = new Paused(game);
   const controlScreen = new ControlsScreen(game);
   const highscores = new Highscores(game);
   const searchUser = new SearchUser(game);
-  const paused = new Paused(game);
+  const gameOver = new GameOverScreen(game);
 
   let lastTime = 0;
 
   function animate(timeStamp) {
+    console.log(game.screen);
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
@@ -45,6 +48,10 @@ window.addEventListener("load", function () {
       searchUser.update();
     }
 
+    if (game.screen[0] === "gameOver") {
+      gameOver.draw(context);
+      gameOver.update();
+    }
     if (game.paused) {
       paused.draw(context);
       paused.update();
