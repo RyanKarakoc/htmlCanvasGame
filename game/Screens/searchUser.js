@@ -15,7 +15,7 @@ export class SearchUser {
     this.username = [];
     this.errorMsg = "";
     this.rank = 0;
-    this.alphabetRegex = /[a-zA-Z]/;
+    this.alphabetRegex = /^[a-zA-Z0-9]$/;
     this.searchUser = false;
     this.addEventListener();
   }
@@ -27,9 +27,7 @@ export class SearchUser {
   }
   keydownHandler = (e) => {
     if (this.game.screen[0] === "searchUser") {
-      if (e.key === "ArrowDown") {
-      } else if (e.key === "ArrowUp") {
-      } else if (e.key === "Enter") {
+      if (e.key === "Enter") {
         fetchHighscoresByUsername(this.username.join("")).then((response) => {
           if (!Array.isArray(response)) {
             this.errorMsg = response.msg;
@@ -47,12 +45,10 @@ export class SearchUser {
         this.game.screen[0] = "highscores";
       } else if (e.key === "Backspace") {
         this.username.pop();
-        this.newKey = false;
         this.searchUser = false;
         this.errorMsg = "";
       } else if (this.alphabetRegex.test(e.key)) {
         this.username.push(e.key);
-        this.newKey = false;
       }
     }
   };

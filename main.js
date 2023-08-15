@@ -4,6 +4,7 @@ import { ControlsScreen } from "./game/Screens/controls.js";
 import { Highscores } from "./game/Screens/highscores.js";
 import { SearchUser } from "./game/Screens/searchUser.js";
 import { GameOverScreen } from "./game/Screens/gameOver.js";
+import { SubmitScoreScreen } from "./game/Screens/submitScore.js";
 
 window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -17,11 +18,11 @@ window.addEventListener("load", function () {
   const highscores = new Highscores(game);
   const searchUser = new SearchUser(game);
   const gameOver = new GameOverScreen(game);
+  const submitScore = new SubmitScoreScreen(game);
 
   let lastTime = 0;
 
   function animate(timeStamp) {
-    console.log(game.screen);
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
@@ -52,6 +53,12 @@ window.addEventListener("load", function () {
       gameOver.draw(context);
       gameOver.update();
     }
+
+    if (game.screen[0] === "submitScore") {
+      submitScore.draw(context);
+      submitScore.update();
+    }
+
     if (game.paused) {
       paused.draw(context);
       paused.update();

@@ -40,7 +40,7 @@ export class Game {
     this.player.currentState.enter();
     this.play = false;
     this.paused = false;
-    this.screen = ["gameOver"];
+    this.screen = ["submitScore"];
   }
   update(deltaTime) {
     this.timeInterval = deltaTime;
