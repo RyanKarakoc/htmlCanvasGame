@@ -31,7 +31,7 @@ export class Game {
     this.score = 0;
     this.timeBonus = false;
     this.fontColor = "black";
-    this.time = 10000;
+    this.time = 30000;
     this.minTime = 0;
     this.timeInterval = 0;
     this.lives = 6;
@@ -40,7 +40,7 @@ export class Game {
     this.player.currentState.enter();
     this.play = false;
     this.paused = false;
-    this.screen = ["submitScore"];
+    this.screen = ["mainMenu"];
   }
   update(deltaTime) {
     this.timeInterval = deltaTime;
@@ -48,6 +48,7 @@ export class Game {
     if (this.time <= this.minTime) {
       this.time = 0;
       this.play = false;
+      this.screen[0] = "gameOver";
     }
     this.background.update();
     this.player.update(this.input.keys, deltaTime);
