@@ -48,7 +48,6 @@ export class SubmitScoreScreen {
         if (!this.usernameTaken) {
           postNewHighscore(this.username.join(""), this.game.score).then(
             (response) => {
-              console.log(response);
               this.scoreSubmitted = true;
               setTimeout(() => {
                 location.reload();

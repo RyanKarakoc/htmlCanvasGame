@@ -30,7 +30,6 @@ export const postNewHighscore = (username, score) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.data);
       return data;
     });
 };
