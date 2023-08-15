@@ -34,7 +34,3 @@ export const postNewHighscore = (username, score) => {
       return data;
     });
 };
-
-// fetchHighscores();
-// fetchHighscoresByUsername("ryan");
-// postNewHighscore("tester12", 5);
